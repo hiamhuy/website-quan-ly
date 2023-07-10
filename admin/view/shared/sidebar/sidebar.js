@@ -87,7 +87,7 @@ function getMenuItems() {
 	return [
 		new MenuItem("1", "", `<i class="fa-solid fa-house"></i>`, "Home", "home.php", []),
 		new MenuItem("2", "", `<i class="fa-solid fa-sliders"></i>`, "Slider", "slider.php", []),
-		// new MenuItem("3", "", `<i class="fa-solid fa-newspaper"></i>`, "Newspaper", "newspaper.html", []),
+		new MenuItem("3", "", `<i class="fa-regular fa-user"></i>`, "Thông tin chi tiết", "thong-tin-chi-tiet.php", []),
 		// new MenuItem("4", "", `<i class="fa-solid fa-cookie-bite"></i>`, "Item", "javascript:void(0)", [
 		// 	new MenuItem("c1", "4", `<i class="fa-solid fa-check"></i>`, "Item1", "item1.html"),
 		// 	new MenuItem("c2", "4", `<i class="fa-solid fa-check"></i>`, "Item2", "item2.html"),
