@@ -23,6 +23,8 @@ form .form-control input {
 	padding: 10px;
 	outline: 0;
 	font-size: 15px;
+	border: 1px solid #949494;
+	border-radius: 5px;
 }
 input.disabled {
 	background-color: #ececec;
@@ -54,13 +56,13 @@ input.disabled {
 }
 .btn-action button.btn-save {
 	display: none;
-	background-color: rgb(46, 198, 64);
+	background-color: rgb(30, 199, 50);
 	margin-right: 10px;
 	transition: all 0.4 ease-in-out;
 }
 .btn-action button.btn-save:hover {
-	background-color: rgb(39, 125, 34);
-	border: 1px solid rgb(39, 125, 34);
+	background-color: rgb(17, 115, 12);
+	border: 1px solid rgb(17, 115, 12);
 	transition: all 0.4 ease-in-out;
 }
 .btn-action button.btn-close {
