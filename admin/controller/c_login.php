@@ -1,5 +1,6 @@
 <?php
 include_once "connect.php";
+include_once "session.php";
 if ((isset($_POST['username'])) && (isset($_POST['pass']))) {
     $username = $_POST['username'];
     $pass = $_POST['pass'];
@@ -10,7 +11,9 @@ if ((isset($_POST['username'])) && (isset($_POST['pass']))) {
     $data = mysqli_fetch_assoc($sql);
     $checkUser = mysqli_num_rows($sql);
     if ($checkUser) {
-        header('location:../view/app/home.php');
+        openSession();
+        createSession("data-user", $data);
+        header('location:../../index.php');
     } else {
         echo 'sai tài khoản hoặc mật khẩu';
     }

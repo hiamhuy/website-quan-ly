@@ -1,3 +1,12 @@
+<?php
+include "admin/controller/session.php";
+
+openSession();
+$dataSession = getSession('data-user');
+var_dump($dataSession);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
