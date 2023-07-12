@@ -53,7 +53,7 @@ function activeLink() {
 				checkActive();
 			});
 		});
-	}, 10);
+	}, 100);
 }
 
 function checkActive() {
@@ -67,7 +67,7 @@ function checkActive() {
 				});
 			}
 		});
-	}, 10);
+	}, 100);
 }
 
 //Sidebar Menu
@@ -126,7 +126,7 @@ function loadMenuItems() {
 	getDataUser(function (value) {
 		console.log("value", value);
 		arr.forEach((item) => {
-			if (item.isPermission == value.Type) {
+			if (item.isPermission == value.type) {
 				let newLi = document.createElement("li");
 				let newDiv = document.createElement("div");
 				newDiv.classList.add("name-link");

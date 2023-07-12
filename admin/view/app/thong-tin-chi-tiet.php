@@ -33,21 +33,37 @@
                 <h1>Thông tin người dùng</h1>
                 <div class="view-wrapper">
                     <?php if ($dataSession) { ?>
-                    <form form="#" id="form-thong-tin">
-                        <div class="form-control">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" id="name" disabled value="<?= $dataSession['Name'] ?>">
+                    <form form="#" id="form-thong-tin" enctype="multipart/form-data">
+                        <div class="form-avatar">
+                            <div class="avatar">
+                                <img id="imgpreview" src="../../assets/thumb-info/admin.png" alt="">
+                            </div>
+                            <div class="form-control">
+                                <input type="file" name="avatar" id="avatar" accept="image/*,.pdf" disabled>
+                                <label class="label-avatar" for="avatar"><i class="fa-solid fa-upload"></i>
+                                    Choose a
+                                    file</label>
+                                <!-- <i class="delete-avatar fa-solid fa-xmark"></i> -->
+                            </div>
                         </div>
-                        <div class="form-control">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" disabled id="username"
-                                value="<?= $dataSession['username'] ?>">
+                        <div class="form-info">
+                            <div class="form-control">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" disabled
+                                    value="<?= (isset($dataSession['name'])) ? $dataSession['name'] : "NULL" ?>">
+                            </div>
+                            <div class="form-control">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" disabled id="username"
+                                    value="<?= (isset($dataSession['username'])) ? $dataSession['username'] : "NULL" ?>">
+                            </div>
+                            <div class="btn-action">
+                                <button type="button" class="btn-edit">Chỉnh sửa</button>
+                                <button type="submit" class="btn-save">Lưu</button>
+                                <button type="button" class="btn-close">Hủy bỏ</button>
+                            </div>
                         </div>
-                        <div class="btn-action">
-                            <button type="button" class="btn-edit">Chỉnh sửa</button>
-                            <button type="submit" class="btn-save">Lưu</button>
-                            <button type="button" class="btn-close">Hủy bỏ</button>
-                        </div>
+
                     </form>
                     <?php } ?>
                 </div>
