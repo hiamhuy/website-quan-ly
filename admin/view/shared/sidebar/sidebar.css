@@ -375,10 +375,10 @@ a {
 	border: 1px solid #cccccc;
 }
 #header-nav .profile .thumb img {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: #d60d0d;
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	background-color: transparent;
 	object-fit: cover;
 }
 #header-nav .action {

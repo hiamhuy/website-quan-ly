@@ -1,18 +1,21 @@
 <?php
-include_once "connect.php";
+include_once "database.php";
 include_once "session.php";
+$db = new Database();
 if ((isset($_POST['username'])) && (isset($_POST['pass']))) {
     $username = $_POST['username'];
     $pass = $_POST['pass'];
 
-    $query = "SELECT * FROM account WHERE username = '$username' and password = '$pass'";
-    $sql = mysqli_query($conn, $query);
-
-    $data = mysqli_fetch_assoc($sql);
-    $checkUser = mysqli_num_rows($sql);
-    if ($checkUser) {
+    $where = array(
+        "username" => $username,
+        "password" => $pass
+    );
+    $dataGet = $db->Get('account', $where);
+    // echo "<pre>";
+    // print_r($dataGet);
+    if (isset($dataGet)) {
         openSession();
-        createSession("data-user", $data);
+        createSession("data-user", $dataGet);
         header('location:../../index.php');
     } else {
         echo 'sai tài khoản hoặc mật khẩu';

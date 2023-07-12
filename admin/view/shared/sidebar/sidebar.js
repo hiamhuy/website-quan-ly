@@ -126,7 +126,7 @@ function loadMenuItems() {
 	getDataUser(function (value) {
 		console.log("value", value);
 		arr.forEach((item) => {
-			if (item.isPermission == value.type) {
+			if (item.isPermission == value[0].type) {
 				let newLi = document.createElement("li");
 				let newDiv = document.createElement("div");
 				newDiv.classList.add("name-link");

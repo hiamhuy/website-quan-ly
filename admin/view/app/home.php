@@ -19,7 +19,7 @@
         <?php require_once "../shared/header/header.php" ?>
         <main id="main">
             <?php
-            include '../../controller/connect.php';
+            include '../../controller/database.php';
 
             ?>
             <div class="container">

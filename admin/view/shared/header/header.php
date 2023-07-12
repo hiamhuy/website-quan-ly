@@ -9,7 +9,7 @@ $dataSession = getSession('data-user');
         <div class="box-profile">
             <div class="profile">
                 <div class="name">Hi,
-                    <?= (isset($dataSession['name'])) ? $dataSession['name'] : 'Developer'; ?>
+                    <?= (isset($dataSession[0]['name'])) ? $dataSession[0]['name'] : 'Developer'; ?>
                 </div>
                 <div class="thumb">
                     <img src="../../assets/thumb-info/admin.png" alt="" />
