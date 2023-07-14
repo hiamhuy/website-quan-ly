@@ -1,7 +1,9 @@
 const btn_edit = document.querySelector(".btn-edit");
 const btn_save = document.querySelector(".btn-save");
 const btn_close = document.querySelector(".btn-close");
+const btn_changepass = document.querySelector(".btn-changepass");
 const input_name = document.getElementById("name");
+const pwd_new = document.querySelectorAll(".pwd-new");
 
 //file
 const file = document.getElementById("avatar");
@@ -17,6 +19,7 @@ if (
 		btn_close.style.display = "block";
 		btn_save.style.display = "block";
 		file.disabled = false;
+		btn_changepass.disabled = false;
 	});
 	btn_close.addEventListener("click", () => {
 		btn_edit.style.display = "block";
@@ -24,8 +27,32 @@ if (
 		btn_close.style.display = "none";
 		btn_save.style.display = "none";
 		file.disabled = true;
+		btn_changepass.disabled = true;
+		pwd_new.forEach((pwd) => {
+			pwd.classList.add("hidden");
+		});
 	});
 }
+
+const hideForm = document.querySelectorAll(".form-control.hidden");
+
+if (btn_changepass != null) {
+	btn_changepass.addEventListener("click", () => {
+		hideForm.forEach((form) => {
+			form.classList.toggle("hidden");
+		});
+	});
+}
+
+//show pass
+const input_pass = document.getElementById("password");
+const iShowpass = document.getElementById("show_psw");
+const icon = document.querySelector(".fa-eye-slash");
+
+iShowpass.addEventListener("click", (e) => {
+	input_pass.type = input_pass.type == "password" ? "text" : "password";
+	icon.classList.toggle("fa-eye");
+});
 
 // input file
 const label = document.querySelector(".label-avatar");

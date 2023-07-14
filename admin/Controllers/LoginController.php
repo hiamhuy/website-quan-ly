@@ -11,13 +11,13 @@ class LoginController extends BaseController
         $db = new Database();
         if ((isset($username)) && (isset($pass))) {
             $where = array(
-                "username" => $username,
-                "password" => $pass
+                "username" => $username
             );
             $dataGet = $db->Get('account', $where);
             if (isset($dataGet) && !empty($dataGet)) {
                 if ($dataGet[0]['username'] == $username) {
-                    if ($dataGet[0]['password'] == $pass) {
+                    $checkpass = password_verify($pass, $dataGet[0]['password']);
+                    if ($checkpass == true) {
                         createSession("data-user", $dataGet);
                         $this->view("app.home.index");
                         die();

@@ -8,6 +8,7 @@ if (!empty($_SERVER['REQUEST_METHOD'])) {
             'name' => $_POST['name'],
             'avatar' => $_FILES['avatar']['name'],
             'avatar_tmp' => $_FILES['avatar']['tmp_name'],
+            'new_password' => $_POST['passwordnew']
         );
         $info = array_filter($info);
         $account->editInfo($info);
@@ -67,6 +68,32 @@ if (!empty($_SERVER['REQUEST_METHOD'])) {
                                 <input type="text" name="username" disabled id="username"
                                     value="<?= (isset($dataSession[0]['username'])) ? $dataSession[0]['username'] : "NULL" ?>">
                             </div>
+                            <div class="form-control">
+                                <label for="password">Password</label>
+                                <div class="form-password">
+                                    <div class="fPass">
+                                        <input type="password" name="password" disabled id="password"
+                                            value="<?= (isset($dataSession[0]['password'])) ? $dataSession[0]['password'] : "NULL" ?>">
+
+                                        <i class="fa-regular fa-eye-slash" id="show_psw"></i>
+
+                                    </div>
+                                    <div class="change_pass">
+                                        <button disabled type="button" class="btn-changepass">Đổi mật khẩu</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-control pwd-new hidden">
+                                <label for="passwordnew">Password new</label>
+                                <input type="text" name="passwordnew" id="username">
+                            </div>
+                            <!-- <div class="form-control pwd-new hidden">
+                                <label for="repassword">Repassword</label>
+                                <input type="text" name="repassword" id="repassword">
+                            </div> -->
+
                             <div class="btn-action">
                                 <button type="button" class="btn-edit">Chỉnh sửa</button>
                                 <button type="submit" name="btn-save" class="btn-save">Lưu</button>

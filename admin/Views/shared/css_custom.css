@@ -65,11 +65,42 @@ form .form-control label {
 }
 form .form-control input {
 	width: 100%;
-	padding: 10px;
+	padding: 10px 35px 10px 10px;
 	outline: 0;
 	font-size: 15px;
 	border: 1px solid #949494;
 	border-radius: 5px;
+}
+form .form-password {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+form .form-password .change_pass {
+	padding: 0px 0px 0px 10px;
+}
+form .form-password .change_pass button.btn-changepass {
+	cursor: pointer;
+}
+form .form-password .fPass {
+	position: relative;
+	width: 100%;
+}
+.form-password i {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	margin: auto;
+	cursor: pointer;
+}
+.form-control.hidden {
+	display: none;
+	/* opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	will-change: opacity, visibility;
+	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out; */
 }
 input[type="file"] {
 	width: 0.1px;

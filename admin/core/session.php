@@ -20,7 +20,7 @@ function deleteSession($name)
     if (isset($_SESSION[$name])) {
         unset($_SESSION[$name]);
     }
-    header('location:/quan-ly/login.php');
+    header('location:/quan-ly/login');
 }
 
 

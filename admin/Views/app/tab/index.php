@@ -11,10 +11,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="<?= _WEB_ROOT ?>/admin/Views/shared/sidebar/sidebar.css" />
+    <link rel="stylesheet" href="admin/Views/shared/css_custom.css" />
+    <link rel="stylesheet" href="admin/Views/app/tab/tab.css" />
 </head>
 
 <body>
-    <div id="Home">
+    <div id="Tab">
         <?php
         require_once "admin/Views/shared/sidebar/sidebar.php";
         require_once "admin/Views/shared/header/header.php";
@@ -22,7 +24,12 @@
         ?>
         <main id="main">
             <div class="container">
-                <h1>Viết một điều gì đó ở đây</h1>
+                <h1>Tab</h1>
+                <div class="view-wrapper">
+                    <div class="list-view">
+                        <?php require_once 'list-view.php' ?>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

@@ -23,7 +23,8 @@ class AccountController extends BaseController
             }
             $arrUpdate['avatar'] = $imageNew;
             $arrUpdate['name'] = $array['name'] ?? '';
-            $arrUpdate['password'] = $array['password'] ?? '';
+            $arrUpdate['password'] = $array['new_password'] ?? $dataSession[0]['password'];
+            $arrUpdate['password'] = password_hash($arrUpdate['password'], PASSWORD_DEFAULT);
 
             $arrUpdate = array_filter($arrUpdate);
 
@@ -39,9 +40,10 @@ class AccountController extends BaseController
                 $dataGet = $db->Get('account', $where);
                 createSession("data-user", $dataGet);
                 createSession("title", "Update successful!!");
-                die();
+
             } else {
                 createSession("title", "Error when update!!");
+
             }
         }
 
