@@ -16,7 +16,6 @@ function activeLink() {
 		const listLinkChild = document.querySelectorAll(".child-link li");
 
 		const windowPathNameUrl = window.location.pathname;
-		console.log("windowPathNameUrl", windowPathNameUrl);
 		navLinks.forEach((link) => {
 			var getTagNameAs = link.querySelectorAll(".name-link a");
 			getTagNameAs.forEach((route) => {
@@ -53,7 +52,7 @@ function activeLink() {
 				checkActive();
 			});
 		});
-	}, 100);
+	}, 50);
 }
 
 function checkActive() {
@@ -67,7 +66,7 @@ function checkActive() {
 				});
 			}
 		});
-	}, 100);
+	}, 50);
 }
 
 //Sidebar Menu
@@ -93,8 +92,8 @@ class MenuItem {
 
 function getMenuItems() {
 	return [
-		new MenuItem("1", "", `<i class="fa-solid fa-house"></i>`, "Home", "home.php", 1, []),
-		new MenuItem("2", "", `<i class="fa-solid fa-sliders"></i>`, "Slider", "slider.php", 1, []),
+		new MenuItem("1", "", `<i class="fa-solid fa-house"></i>`, "Home", "home", 1, []),
+		new MenuItem("2", "", `<i class="fa-solid fa-sliders"></i>`, "Slider", "slider", 1, []),
 		// new MenuItem("3", "", `<i class="fa-regular fa-user"></i>`, "Thông tin chi tiết", "thong-tin-chi-tiet.php", []),
 		// new MenuItem("4", "", `<i class="fa-solid fa-cookie-bite"></i>`, "Item", "javascript:void(0)", [
 		// 	new MenuItem("c1", "4", `<i class="fa-solid fa-check"></i>`, "Item1", "item1.html"),
@@ -106,7 +105,7 @@ function getMenuItems() {
 }
 function getDataUser(callback) {
 	$.ajax({
-		url: "../../../admin/view/shared/postSession.php",
+		url: "./admin/core/getSession.php",
 		type: "GET",
 		dataType: "json",
 		success: function (data) {
@@ -126,51 +125,53 @@ function loadMenuItems() {
 	getDataUser(function (value) {
 		console.log("value", value);
 		arr.forEach((item) => {
-			if (item.isPermission == value[0].type) {
-				let newLi = document.createElement("li");
-				let newDiv = document.createElement("div");
-				newDiv.classList.add("name-link");
-				let newA = document.createElement("a");
-				newA.href = item.route;
-				let icon = document.createElement("span");
-				icon.innerHTML = item.icon;
-				let text = document.createElement("span");
-				text.classList.add("text");
-				text.innerText = item.title;
+			if (value != null && value != undefined) {
+				if (item.isPermission == value[0].type) {
+					let newLi = document.createElement("li");
+					let newDiv = document.createElement("div");
+					newDiv.classList.add("name-link");
+					let newA = document.createElement("a");
+					newA.href = item.route;
+					let icon = document.createElement("span");
+					icon.innerHTML = item.icon;
+					let text = document.createElement("span");
+					text.classList.add("text");
+					text.innerText = item.title;
 
-				newA.appendChild(icon);
-				newA.appendChild(text);
-				newDiv.appendChild(newA);
-				newLi.appendChild(newDiv);
-				if (item.children != null && item.children.length > 0) {
-					let ulChilds = document.createElement("ul");
-					let iconDown = document.createElement("span");
-					iconDown.classList.add("icon");
-					iconDown.innerHTML = `<i class="fa-solid fa-angle-down"></i>`;
-					newDiv.appendChild(iconDown);
-					ulChilds.classList.add("child-link");
-					item.children.forEach((child) => {
-						newLi.classList.add("has-child");
-						let liChild = document.createElement("li");
-						let aChild = document.createElement("a");
-						aChild.href = child.route;
-						let spanIcon = document.createElement("span");
-						spanIcon.innerHTML = child.icon;
-						let spanChild = document.createElement("span");
-						spanChild.innerText = child.title;
+					newA.appendChild(icon);
+					newA.appendChild(text);
+					newDiv.appendChild(newA);
+					newLi.appendChild(newDiv);
+					if (item.children != null && item.children.length > 0) {
+						let ulChilds = document.createElement("ul");
+						let iconDown = document.createElement("span");
+						iconDown.classList.add("icon");
+						iconDown.innerHTML = `<i class="fa-solid fa-angle-down"></i>`;
+						newDiv.appendChild(iconDown);
+						ulChilds.classList.add("child-link");
+						item.children.forEach((child) => {
+							newLi.classList.add("has-child");
+							let liChild = document.createElement("li");
+							let aChild = document.createElement("a");
+							aChild.href = child.route;
+							let spanIcon = document.createElement("span");
+							spanIcon.innerHTML = child.icon;
+							let spanChild = document.createElement("span");
+							spanChild.innerText = child.title;
 
-						aChild.appendChild(spanIcon);
-						aChild.appendChild(spanChild);
+							aChild.appendChild(spanIcon);
+							aChild.appendChild(spanChild);
 
-						liChild.appendChild(aChild);
+							liChild.appendChild(aChild);
 
-						ulChilds.appendChild(liChild);
+							ulChilds.appendChild(liChild);
 
-						newLi.appendChild(ulChilds);
-					});
+							newLi.appendChild(ulChilds);
+						});
+					}
+
+					listMenu.appendChild(newLi);
 				}
-
-				listMenu.appendChild(newLi);
 			}
 		});
 	});

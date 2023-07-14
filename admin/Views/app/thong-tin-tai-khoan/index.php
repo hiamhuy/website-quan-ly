@@ -1,3 +1,20 @@
+<?php
+$dataSession = getSession('data-user');
+
+if (!empty($_SERVER['REQUEST_METHOD'])) {
+    if (($_SERVER['REQUEST_METHOD']) === 'POST') {
+        $account = new AccountController();
+        $info = array(
+            'name' => $_POST['name'],
+            'avatar' => $_FILES['avatar']['name'],
+            'avatar_tmp' => $_FILES['avatar']['tmp_name'],
+        );
+        $info = array_filter($info);
+        $account->editInfo($info);
+
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,37 +26,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../shared/sidebar/sidebar.css" />
-    <link rel="stylesheet" href="../shared/css_custom.css" />
+    <link rel="stylesheet" href="admin/Views/shared/sidebar/sidebar.css" />
+    <link rel="stylesheet" href="admin/Views/shared/css_custom.css" />
 </head>
 
 <body>
-    <?php
-    include '../../controller/session.php';
-    openSession();
-    $dataSession = getSession('data-user');
-    ?>
-
     <div id="thong-tin-nguoi-dung">
-        <?php require_once "../shared/sidebar/sidebar.php" ?>
-        <?php require_once "../shared/header/header.php" ?>
+        <?php
+        require_once "admin/Views/shared/sidebar/sidebar.php";
+        require_once "admin/Views/shared/header/header.php";
+
+        ?>
         <main id="main">
             <div class="container">
                 <h1>Thông tin người dùng</h1>
                 <div class="view-wrapper">
                     <?php if ($dataSession) { ?>
-                    <form action="../../controller/edit-info.php" id="form-thong-tin" method="post"
-                        enctype="multipart/form-data">
+                    <form action="" id="form-thong-tin" method="post" enctype="multipart/form-data">
                         <div class="form-avatar">
                             <div class="avatar">
-                                <img id="imgpreview" src="../../assets/thumb-info/admin.png" alt="">
+                                <img id="imgpreview"
+                                    src="admin/assets/thumb-info/<?= (isset($dataSession[0]['avatar'])) ? $dataSession[0]['avatar'] : 'admin.png' ?>"
+                                    alt="">
                             </div>
                             <div class="form-control">
                                 <input type="file" name="avatar" id="avatar" accept="image/*,.pdf" disabled>
                                 <label class="label-avatar" for="avatar"><i class="fa-solid fa-upload"></i>
                                     Choose a
                                     file</label>
-                                <!-- <i class="delete-avatar fa-solid fa-xmark"></i> -->
                             </div>
                         </div>
                         <div class="form-info">
@@ -69,8 +83,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../shared/sidebar/sidebar.js"></script>
-    <script src="../shared/js_custom.js"></script>
+    <script src="admin/Views/shared/sidebar/sidebar.js"></script>
+    <script src="admin/Views/shared/js_custom.js"></script>
 </body>
 
 </html>

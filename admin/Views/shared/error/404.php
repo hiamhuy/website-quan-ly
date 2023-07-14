@@ -16,7 +16,7 @@
     <div id="404">
         <main id="main">
             <div class="container">
-                <h1>Link không tồn tại vui lòng chọn lại !!</h1>
+                <h1>Can not found URL !!</h1>
             </div>
         </main>
     </div>

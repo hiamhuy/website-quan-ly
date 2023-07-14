@@ -31,8 +31,21 @@ if (
 const label = document.querySelector(".label-avatar");
 const image_preview = document.querySelector("#imgpreview");
 
+function getDataUser(callback) {
+	$.ajax({
+		url: "./admin/core/getSession.php",
+		type: "GET",
+		dataType: "json",
+		success: function (data) {
+			callback(data);
+		},
+		error: function (xhr, status, error) {
+			console.log("error get data: ", error);
+		},
+	});
+}
+
 file.addEventListener("change", (e) => {
-	console.log(e);
 	label.innerHTML = `<i class="fa-solid fa-upload"></i> Choose a
 	file`;
 	if (e.target.files && e.target.files.length > 0) {
@@ -49,6 +62,13 @@ file.addEventListener("change", (e) => {
 			reader.readAsDataURL(e.target.files[0]);
 		}
 	} else {
-		image_preview.src = "../../assets/thumb-info/admin.png";
+		getDataUser(function (data) {
+			if (data[0]["avatar"] != null) {
+				let avatarSession = data[0]["avatar"];
+				image_preview.src = `./admin/assets/thumb-info/${avatarSession}`;
+			} else {
+				image_preview.src = "./admin/assets/thumb-info/admin.png";
+			}
+		});
 	}
 });

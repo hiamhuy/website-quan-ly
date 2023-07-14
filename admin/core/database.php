@@ -49,7 +49,7 @@ class Database
         $query = "SELECT * FROM " . $table . "";
         $result = mysqli_query($this->conn, $query);
         $list = array();
-        while ($data = mysqli_fetch_assoc($result)) {
+        while ($data = mysqli_fetch_array($result)) {
             $list[] = $data;
         }
         return $list;
@@ -71,7 +71,7 @@ class Database
         $keys = "";
         $condition = "";
         foreach ($fields as $key => $val) {
-            $keys .= $key . "= '" . $val . "',";
+            $keys .= $key . "= '" . $val . "', ";
         }
         $keys = substr($keys, 0, -2);
 
@@ -79,8 +79,8 @@ class Database
             $condition .= $key . "= '" . $val . "' AND ";
         }
         $condition = substr($condition, 0, -5);
-        $query = "UPDATE " . $table . "SET" . $keys . " WHERE " . $condition . " ";
-        $result = mysqli_query($this->conn, $query);
+        $update = "UPDATE " . $table . " SET " . $keys . " WHERE " . $condition . " ";
+        $result = mysqli_query($this->conn, $update);
         if ($result) {
             return true;
         } else {
@@ -96,8 +96,8 @@ class Database
         }
         $condition = substr($condition, 0, -5);
 
-        $query = "DELETE FROM " . $table . " WHERE " . $condition . " ";
-        $result = mysqli_query($this->conn, $query);
+        $delete = "DELETE FROM " . $table . " WHERE " . $condition . " ";
+        $result = mysqli_query($this->conn, $delete);
         if ($result) {
             return true;
         } else {
@@ -107,8 +107,4 @@ class Database
     }
 
 }
-
-
-
-
 ?>

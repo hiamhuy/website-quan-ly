@@ -7,6 +7,8 @@ body {
 	font-family: "Roboto", sans-serif;
 	font-size: 16px;
 	height: 100vh;
+	padding: auto;
+	margin: auto;
 }
 
 .container {
@@ -16,8 +18,8 @@ body {
 	max-width: 99%;
 	align-items: center;
 	justify-content: center;
-	margin: 0 auto;
-	transform: translateY(50%);
+	margin: auto;
+	top: 60px;
 	position: relative;
 	overflow: hidden;
 	background-color: #ffffff25;
@@ -159,7 +161,4 @@ a {
 	}
 }
 @media screen and (max-width: 1024px) {
-	.container {
-		transform: translateY(20%);
-	}
 }

@@ -1,10 +1,13 @@
 <?php
-include "admin/controller/session.php";
+$login = new LoginController();
+if (!empty($_SERVER['REQUEST_METHOD'])) {
+    if (($_SERVER['REQUEST_METHOD']) === 'POST') {
+        $username = $_POST['username'];
+        $pass = $_POST['pass'];
 
-openSession();
-$dataSession = getSession('data-user');
-var_dump($dataSession);
-
+        $login->login($username, $pass);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,14 +22,14 @@ var_dump($dataSession);
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./login.css" />
+    <link rel="stylesheet" href="<?= _WEB_ROOT ?>/admin/Views/Login/login.css" />
 </head>
 
 <body>
     <div id="form-login">
         <div class="container">
             <div class="left">
-                <form class="form" action="admin/controller/c_login.php" method="POST">
+                <form class="form" action="" method="POST">
                     <h3>Đăng nhập</h3>
                     <div class="input-block">
                         <input name="username" class="input" type="text" id="email" required="" />
@@ -38,7 +41,7 @@ var_dump($dataSession);
                     </div>
                     <div class="input-block">
                         <span class="forgot"><a href="#">Forgot Password?</a></span>
-                        <button type="submit">Đăng nhập</button>
+                        <button name="btn-login" type="submit">Đăng nhập</button>
                     </div>
                 </form>
             </div>

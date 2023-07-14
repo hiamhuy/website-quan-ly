@@ -1,7 +1,9 @@
 <?php
-require_once '../../controller/session.php';
-openSession();
 $dataSession = getSession('data-user');
+if (isset($_GET['action']) && ($_GET['action'] === 'logout' || $_GET['action'] === 'Logout')) {
+    $loginController = new LoginController();
+    $loginController->logout();
+}
 ?>
 
 <header id="header-nav">
@@ -12,18 +14,19 @@ $dataSession = getSession('data-user');
                     <?= (isset($dataSession[0]['name'])) ? $dataSession[0]['name'] : 'Developer'; ?>
                 </div>
                 <div class="thumb">
-                    <img src="../../assets/thumb-info/admin.png" alt="" />
+                    <img src="admin/assets/thumb-info/<?= (isset($dataSession[0]['avatar'])) ? $dataSession[0]['avatar'] : 'admin.png' ?>"
+                        alt="" />
                 </div>
             </div>
             <ul class="action">
                 <li>
-                    <a href="../app/thong-tin-chi-tiet.php">
+                    <a href="account">
                         <i class="fa-regular fa-user"></i>
                         <span class="text">Thông tin chi tiết</span>
                     </a>
                 </li>
                 <li>
-                    <a href="../../controller/c_logout.php">
+                    <a href="?action=logout">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i> <span class="text">Thoát</span>
                     </a>
                 </li>

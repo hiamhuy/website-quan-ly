@@ -1,5 +1,5 @@
 <?php
-include '../../controller/session.php';
+include 'session.php';
 openSession();
 $dataSession = getSession('data-user');
 print json_encode($dataSession);
