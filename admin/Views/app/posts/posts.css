@@ -88,16 +88,19 @@ table tbody tr .action a:last-child {
 }
 .form-control .thumb {
 	margin-top: 10px;
-	width: 200px;
+	width: 100%;
 	height: 200px;
 	border: 1px solid #cccccc;
 }
 .form-control .thumb img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 }
-
+input[type="file"] {
+	z-index: unset;
+	cursor: pointer;
+}
 @media screen and (max-width: 767px) {
 	table {
 		background-color: transparent;

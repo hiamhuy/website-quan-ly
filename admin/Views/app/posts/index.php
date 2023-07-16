@@ -57,36 +57,37 @@ $arrTab = $tab->list();
     <script src="<?= _WEB_ROOT ?>/admin/Views/shared/sidebar/sidebar.js"></script>
     <script>
     CKEDITOR.replace('content');
-    // //file
-    // const label = document.querySelector("#thumb_label");
-    // const file = document.getElementById("thumb");
-    // const image_preview = document.querySelector("#thumbpreview");
-    // file.addEventListener("change", (e) => {
-    //     label.innerHTML = `Choose image`;
-    //     if (e.target.files && e.target.files.length > 0) {
-    //         const getSizeImage = e.target.files[0].size;
-    //         if (getSizeImage > 1024 * 1024) {
-    //             alert("Chỉ cho phép tải tệp tin nhỏ hơn 1MB");
-    //         } else {
-    //             var nameFile = e.target.files[0].name;
-    //             label.innerHTML = `${nameFile}`;
-    //             const reader = new FileReader();
-    //             reader.addEventListener("load", (e) => {
-    //                 image_preview.src = e.target.result;
-    //             });
-    //             reader.readAsDataURL(e.target.files[0]);
-    //         }
-    //     } else {
-    //         getDataUser(function(data) {
-    //             if (data[0]["avatar"] != null) {
-    //                 let avatarSession = data[0]["avatar"];
-    //                 image_preview.src = `./admin/assets/thumb-info/${avatarSession}`;
-    //             } else {
-    //                 image_preview.src = "./admin/assets/thumb-info/admin.png";
-    //             }
-    //         });
-    //     }
-    // });
+    //file
+    const label = document.querySelector("#thumb_label");
+    const file = document.getElementById("thumb");
+    const image_preview = document.querySelector("#thumbpreview");
+    file.addEventListener("change", (e) => {
+        label.innerHTML = `choose image`;
+        if (e.target.files && e.target.files.length > 0) {
+            const getSizeImage = e.target.files[0].size;
+            if (getSizeImage > 1024 * 1024) {
+                alert("Chỉ cho phép tải tệp tin nhỏ hơn 1MB");
+            } else {
+                var nameFile = e.target.files[0].name;
+                label.innerHTML = `${nameFile}`;
+                const reader = new FileReader();
+                reader.addEventListener("load", (e) => {
+                    image_preview.src = e.target.result;
+                });
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        }
+        //  else {
+        //     getDataUser(function(data) {
+        //         if (data[0]["avatar"] != null) {
+        //             let avatarSession = data[0]["avatar"];
+        //             image_preview.src = `./admin/assets/thumb-info/${avatarSession}`;
+        //         } else {
+        //             image_preview.src = "./admin/assets/thumb-info/admin.png";
+        //         }
+        //     });
+        // }
+    });
     </script>
 </body>
 
