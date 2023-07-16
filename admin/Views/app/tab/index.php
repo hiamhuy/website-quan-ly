@@ -88,7 +88,6 @@ if (isset($_GET['action'])) {
     </script>
 
     <script src="<?= _WEB_ROOT ?>/admin/Views/shared/sidebar/sidebar.js"></script>
-    <script src="admin/Views/app/tab/tab.js"></script>
 </body>
 
 </html>

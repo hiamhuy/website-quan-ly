@@ -1,0 +1,143 @@
+.post-wrapper {
+	padding: 0px 10px;
+}
+.flexrow {
+	display: flex;
+	flex-direction: row;
+}
+.flexcolumn {
+	display: flex;
+	flex-direction: column;
+}
+.action {
+	padding: 10px 0;
+}
+.action .btn-add {
+	padding: 10px 20px;
+	background-color: rgb(231, 71, 71);
+	border: 1px solid rgb(231, 71, 71);
+	color: #ffffff;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.action .btn-add i {
+	margin-right: 5px;
+}
+.content {
+	padding: 10px 0;
+}
+.view-wrapper .show {
+	display: block;
+}
+.view-wrapper .hidden {
+	display: none;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #fff;
+	box-shadow: rgb(185 188 191 / 20%) 0px 0px 24px 5px;
+	border-radius: 5px;
+	font-family: arial;
+	overflow: auto;
+}
+table thead th {
+	padding: 10px 16px;
+	text-align: left;
+	background-color: #f3f3f5;
+}
+table tbody tr td {
+	padding: 10px 16px;
+	border-bottom: 1px solid #eee;
+}
+table tbody tr .action {
+	display: flex;
+}
+table tbody tr .action a {
+	margin-right: 10px;
+	cursor: pointer;
+	background-color: #f3f3f5;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 2px;
+	color: #333;
+}
+table tbody tr .action a:last-child {
+	margin-right: 0;
+}
+.res-head {
+	display: none;
+}
+.btn-action a.btn-back {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: #ffffff;
+	border-radius: 5px;
+	padding: 5px 10px;
+	border: 1px solid rgb(141, 167, 160);
+	background-color: rgb(141, 167, 160);
+	margin-right: 10px;
+	transition: all 0.4 ease-in-out;
+}
+.btn-action a.btn-back:hover {
+	background-color: rgb(109, 125, 121);
+	border: 1px solid rgb(109, 125, 121);
+	transition: all 0.4 ease-in-out;
+}
+.form-control .thumb {
+	margin-top: 10px;
+	width: 200px;
+	height: 200px;
+	border: 1px solid #cccccc;
+}
+.form-control .thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+@media screen and (max-width: 767px) {
+	table {
+		background-color: transparent;
+		box-shadow: none;
+	}
+	table thead {
+		display: none;
+	}
+	table tbody tr {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: 10px;
+		background-color: #fff;
+		padding: 50px 10px 10px 10px;
+		position: relative;
+		background-color: #fff;
+		box-shadow: rgb(185 188 191 / 20%) 0px 0px 24px 5px;
+	}
+	table tbody tr td {
+		display: flex;
+		background-color: transparent;
+		padding: 0;
+		margin-bottom: 5px;
+		margin-right: 16px;
+		border: none;
+		flex-wrap: wrap;
+	}
+	table tbody tr td .res-head {
+		display: block;
+		font-weight: 700;
+		margin-right: 5px;
+	}
+	table tbody tr td:first-child {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+	}
+	table tbody .action {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+}

@@ -93,7 +93,7 @@ class MenuItem {
 function getMenuItems() {
 	return [
 		new MenuItem("1", "", `<i class="fa-solid fa-house"></i>`, "Home", "home", 1, []),
-		new MenuItem("2", "", `<i class="fa-solid fa-sliders"></i>`, "Slider", "slider", 1, []),
+		// new MenuItem("2", "", `<i class="fa-solid fa-sliders"></i>`, "Slider", "slider", 1, []),
 		new MenuItem("3", "", `<i class="fa-brands fa-medium"></i>`, "Tabs", "tab", 1, []),
 		new MenuItem("4", "", `<i class="fa-regular fa-images"></i>`, "Posts", "posts", 1, []),
 		// new MenuItem("4", "", `<i class="fa-solid fa-cookie-bite"></i>`, "Item", "javascript:void(0)", [
