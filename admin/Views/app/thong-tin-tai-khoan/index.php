@@ -82,17 +82,11 @@ if (!empty($_SERVER['REQUEST_METHOD'])) {
                                         <button disabled type="button" class="btn-changepass">Đổi mật khẩu</button>
                                     </div>
                                 </div>
-
-
                             </div>
                             <div class="form-control pwd-new hidden">
                                 <label for="passwordnew">Password new</label>
                                 <input type="text" name="passwordnew" id="username">
                             </div>
-                            <!-- <div class="form-control pwd-new hidden">
-                                <label for="repassword">Repassword</label>
-                                <input type="text" name="repassword" id="repassword">
-                            </div> -->
 
                             <div class="btn-action">
                                 <button type="button" class="btn-edit">Chỉnh sửa</button>
