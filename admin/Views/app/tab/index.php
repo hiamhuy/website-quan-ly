@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
                         'isActive' => 2
                     );
                     $info = array_filter($info);
+
                     $tab->_create($info);
                 }
             }

@@ -58,7 +58,7 @@ class Database
     function Insert($table, $fields)
     {
         $insert = "INSERT INTO " . $table . "(" . implode(",", array_keys($fields)) . ") 
-                    VALUES('" . implode(",", array_values($fields)) . "')";
+                    VALUES('" . implode("','", array_values($fields)) . "')";
         $result = mysqli_query($this->conn, $insert);
         if ($result) {
             return true;

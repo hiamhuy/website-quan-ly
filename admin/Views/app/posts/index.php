@@ -1,9 +1,55 @@
 <?php
-$post = new PostsController();
-$arrPost = $post->list();
 include 'admin/Controllers/TabController.php';
 $tab = new TabController();
 $arrTab = $tab->list();
+
+$post = new PostsController();
+$arrPost = $post->list();
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $valPost = $post->_get($id);
+}
+
+if (isset($_GET['action'])) {
+    if (isset($_GET['id'])) {
+        if ($_GET['id'] == 0) {
+            if (!empty($_SERVER['REQUEST_METHOD'])) {
+                if (($_SERVER['REQUEST_METHOD']) === 'POST') {
+                    $info = array(
+                        'image' => $_FILES['c_thumb']['name'],
+                        'imagetmp' => $_FILES['c_thumb']['tmp_name'],
+                        'title' => $_POST['c_title'],
+                        'titlesmall' => $_POST['c_titlesmall'],
+                        'content' => $_POST['c_content'],
+                        'type' => $_POST['type'],
+                    );
+                    $info = array_filter($info);
+                    $post->_create($info);
+                }
+            }
+        } else {
+            if (!empty($_SERVER['REQUEST_METHOD'])) {
+                if (($_SERVER['REQUEST_METHOD']) === 'POST') {
+                    $id = $_GET['id'];
+                    $info = array(
+                        'image' => $_FILES['e_image']['name'],
+                        'imagetmp' => $_FILES['e_image']['tmp_name'],
+                        'title' => $_POST['e_title'],
+                        'titlesmall' => $_POST['e_titlesmall'],
+                        'content' => $_POST['e_content'],
+                        'type' => $_POST['e_type'],
+                    );
+                    $post->_edit($info, $id);
+                }
+            }
+        }
+        if ($_GET['action'] == 'delete') {
+            $id = $_GET['id'];
+            $post->_delete($id);
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,38 +102,44 @@ $arrTab = $tab->list();
 
     <script src="<?= _WEB_ROOT ?>/admin/Views/shared/sidebar/sidebar.js"></script>
     <script>
-    CKEDITOR.replace('content');
+    const content = document.getElementById("content");
+    if (content != null && content != undefined) {
+        CKEDITOR.replace('content');
+
+    }
     //file
     const label = document.querySelector("#thumb_label");
     const file = document.getElementById("thumb");
     const image_preview = document.querySelector("#thumbpreview");
-    file.addEventListener("change", (e) => {
-        label.innerHTML = `choose image`;
-        if (e.target.files && e.target.files.length > 0) {
-            const getSizeImage = e.target.files[0].size;
-            if (getSizeImage > 1024 * 1024) {
-                alert("Chỉ cho phép tải tệp tin nhỏ hơn 1MB");
-            } else {
-                var nameFile = e.target.files[0].name;
-                label.innerHTML = `${nameFile}`;
-                const reader = new FileReader();
-                reader.addEventListener("load", (e) => {
-                    image_preview.src = e.target.result;
-                });
-                reader.readAsDataURL(e.target.files[0]);
+    if (file != null && file != undefined) {
+        file.addEventListener("change", (e) => {
+            label.innerHTML = `choose image`;
+            if (e.target.files && e.target.files.length > 0) {
+                const getSizeImage = e.target.files[0].size;
+                if (getSizeImage > 1024 * 1024) {
+                    alert("Chỉ cho phép tải tệp tin nhỏ hơn 1MB");
+                } else {
+                    var nameFile = e.target.files[0].name;
+                    label.innerHTML = `${nameFile}`;
+                    const reader = new FileReader();
+                    reader.addEventListener("load", (e) => {
+                        image_preview.src = e.target.result;
+                    });
+                    reader.readAsDataURL(e.target.files[0]);
+                }
             }
-        }
-        //  else {
-        //     getDataUser(function(data) {
-        //         if (data[0]["avatar"] != null) {
-        //             let avatarSession = data[0]["avatar"];
-        //             image_preview.src = `./admin/assets/thumb-info/${avatarSession}`;
-        //         } else {
-        //             image_preview.src = "./admin/assets/thumb-info/admin.png";
-        //         }
-        //     });
-        // }
-    });
+            //  else {
+            //     getDataUser(function(data) {
+            //         if (data[0]["avatar"] != null) {
+            //             let avatarSession = data[0]["avatar"];
+            //             image_preview.src = `./admin/assets/thumb-info/${avatarSession}`;
+            //         } else {
+            //             image_preview.src = "./admin/assets/thumb-info/admin.png";
+            //         }
+            //     });
+            // }
+        });
+    }
     </script>
 </body>
 

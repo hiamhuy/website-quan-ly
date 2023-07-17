@@ -50,6 +50,10 @@ table tbody tr td {
 	padding: 10px 16px;
 	border-bottom: 1px solid #eee;
 }
+table tbody tr td img {
+	width: 120px;
+	object-fit: cover;
+}
 table tbody tr .action {
 	display: flex;
 }

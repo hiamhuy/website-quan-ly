@@ -9,7 +9,7 @@
                     <th scope="col" style="width:50px">#</th>
                     <th scope="col" style="width:100px">Ảnh bìa</th>
                     <th scope="col" style="width:200px">Tiêu đề</th>
-                    <th scope="col" style="width:200px">Nội dung chi tiết</th>
+                    <th scope="col">Nội dung chi tiết</th>
                     <th scope="col" style="width:100px">Loại bài đăng</th>
                     <th scope="col" style="width:70px">Ngày đăng</th>
                     <th scope="col"></th>
@@ -25,24 +25,30 @@
                         <?= $stt++ ?>
                     </td>
                     <td style="width:100px"><span class="res-head">Ảnh bìa:</span>
-                        <?= $value['image'] ?>
+                        <img src="admin/assets/post/<?= $value['image'] ?>" alt="">
                     </td>
-                    <td style="width:200px"></td><span class="res-head">Tiêu đề:</span>
-                    <?= $value['title'] ?>
+                    <td style="width:200px"><span class="res-head">Tiêu đề:</span>
+                        <?= $value['title'] ?>
                     </td>
-                    <td style="width:200px"><span class="res-head">Nội dung chi tiết:</span>
-                        <?= $value['content'] ?>
+                    <td><span class="res-head">Nội dung chi tiết:</span>
+                        <?= substr($value['content'], 0, 100) . "..." ?>
                     </td>
                     <td style="width:100px"><span class="res-head">Loại bài đăng:</span>
-                        <?= $value['type'] ?>
+                        <?php foreach ($arrTab as $tab) {
+                                    if ($value['type'] == $tab['Id']) {
+                                        echo $tab['name'];
+
+                                    }
+                                }
+                                ?>
                     </td>
                     <td style="width:70px"><span class="res-head">Ngày đăng:</span>
                         <?= $value['postdate'] ?>
                     </td>
 
                     <td class="action">
-                        <a href="?action=edit&id=<?= $value['Id'] ?>">Edit</a>
-                        <a href="?action=delete&id=<?= $value['Id'] ?>">Delete</a>
+                        <a href="?action=edit&id=<?= $value['id'] ?>">Edit</a>
+                        <a href="?action=delete&id=<?= $value['id'] ?>">Delete</a>
                     </td>
                 </tr>
 
